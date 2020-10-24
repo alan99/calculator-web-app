@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class=title>Calculator</div>
+    <table>
+        <tr>
+            <td colspan="3"><input type="text" id="result" readonly /></td>
+            <td><input type="button" value="c" onclick="cleanAll()" /> </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="1" onclick="updateDisplay('1')" /> </td>
+            <td><input type="button" value="2" onclick="updateDisplay('2')" /> </td>
+            <td><input type="button" value="3" onclick="updateDisplay('3')" /> </td>
+            <td><input type="button" value="/" onclick="updateDisplay('/')" /> </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" onclick="updateDisplay('4')" /> </td>
+            <td><input type="button" value="5" onclick="updateDisplay('5')" /> </td>
+            <td><input type="button" value="6" onclick="updateDisplay('6')" /> </td>
+            <td><input type="button" value="-" onclick="updateDisplay('-')" /> </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" onclick="updateDisplay('7')" /> </td>
+            <td><input type="button" value="8" onclick="updateDisplay('8')" /> </td>
+            <td><input type="button" value="9" onclick="updateDisplay('9')" /> </td>
+            <td><input type="button" value="+" onclick="updateDisplay('+')" /> </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="." onclick="updateDisplay('.')" /> </td>
+            <td><input type="button" value="0" onclick="updateDisplay('0')" /> </td>
+            <td><input type="button" value="=" onclick="calculate()" /> </td>
+            <td><input type="button" value="*" onclick="updateDisplay('*')" /> </td>
+        </tr>
+    </table>
+
+    <script>
+        //function to display value 
+        function updateDisplay(val) {
+            document.getElementById("result").value += val;
+        }
+
+        //function to evaluates the digit and return result 
+        function calculate() {
+            let x = document.getElementById("result").value;
+            let y = eval(x);
+            document.getElementById("result").value = y;
+        }
+
+        //function to clear the display 
+        function cleanAll() {
+            document.getElementById("result").value = "";
+        }
+    </script>
+</body>
+
+</html>
