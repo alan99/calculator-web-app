@@ -48,9 +48,26 @@
 
         //function to evaluates the digit and return result 
         function calculate() {
-            let x = document.getElementById("result").value;
-            let y = eval(x);
-            document.getElementById("result").value = y;
+            let equ = document.getElementById("result").value;
+            let res = eval(equ);
+            document.getElementById("result").value = res;
+
+            const xhr = new XMLHttpRequest();
+            const url = 'http://localhost:3000/addRecord';
+
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            const req = {
+                input: equ,
+                output: res
+            };
+
+            xhr.onreadystatechange = (e) => {
+                console.log(xhr.response)
+            }
+
+            xhr.send(JSON.stringify(req));
         }
 
         //function to clear the display 

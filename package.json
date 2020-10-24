@@ -1,0 +1,15 @@
+{
+    "type": "module",
+    "devDependencies": {
+        "chai": "*",
+        "mocha": "*",
+        "sinon": "*"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "dependencies": {
+        "express": "*",
+        "jest": "^26.5.3"
+    }
+}
