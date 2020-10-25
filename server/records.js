@@ -1,7 +1,7 @@
 let records = [];
 
 function getRecord() {
-    return records;
+    return records.slice(-10);
 }
 
 function addRecord(record) {
