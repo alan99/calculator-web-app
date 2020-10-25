@@ -6,10 +6,7 @@ function getRecord() {
 
 function addRecord(record) {
     records.push(record);
-    if (records.length > 10)
-        records.shift();
-
-    return records;
+    return records.slice(-10);
 }
 
 export {
