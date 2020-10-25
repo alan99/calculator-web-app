@@ -1,4 +1,4 @@
-import { addRecord } from './records.js';
+import { getRecord, addRecord } from './records.js';
 import express from 'express';
 import bodyParser from 'body-parser';
 
@@ -14,16 +14,14 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', (req, res) => {
-    console.log('Hello All');
-
-    res.send('Hello World');
+    res.send(getRecord());
 });
 
 app.post('/addRecord', jsonParser, (req, res) => {
     const record = req.body;
-    addRecord(record);
+    const records = addRecord(record);
 
-    res.send('success');
+    res.send(records);
 });
 
 app.listen(3000);

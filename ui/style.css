@@ -1,5 +1,6 @@
 .title {
     font-size: 20px;
+    font-weight: bold;
     margin-bottom: 10px;
     text-align: center;
     width: 400px;
@@ -8,6 +9,23 @@
 
 table {
     width: 400px;
+}
+
+.history-head {
+    border-bottom: 2px solid black;
+}
+
+.history-row {
+    border-top: 2px solid black;
+}
+
+.history-table {
+    font-size: 20px;
+    border: 2px solid black;
+    border-collapse: collapse;
+    background-color: green;
+    color: black;
+    overflow-x: auto;
 }
 
 input[type="button"] {

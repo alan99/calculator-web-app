@@ -1,5 +1,9 @@
 let records = [];
 
+function getRecord() {
+    return records;
+}
+
 function addRecord(record) {
     records.push(record);
     if (records.length > 10)
@@ -9,5 +13,6 @@ function addRecord(record) {
 }
 
 export {
+    getRecord,
     addRecord
 };

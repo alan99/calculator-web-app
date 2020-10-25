@@ -40,23 +40,17 @@
         </tr>
     </table>
 
+    <div id="history-records"></div>
+
     <script>
-        //function to display value 
+        //function to display value
         function updateDisplay(val) {
             document.getElementById("result").value += val;
         }
 
-        //function to evaluates the digit and return result 
-        function calculate() {
-            let equ = document.getElementById("result").value;
-            let res = eval(equ);
-            document.getElementById("result").value = res;
-
+        function getHistoryTableContent(equ, res) {
             const xhr = new XMLHttpRequest();
-            const url = 'http://localhost:3000/addRecord';
-
-            xhr.open('POST', url, true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
+            const url = 'http://localhost:3000';
 
             const req = {
                 input: equ,
@@ -64,16 +58,53 @@
             };
 
             xhr.onreadystatechange = (e) => {
-                console.log(xhr.response)
+                const data = JSON.parse(xhr.response);
+                console.log(data);
+
+                let table = '<table class="history-table">';
+                table += '<tr>';
+                table += '<th class="history-head"> Input Equation </th>';
+                table += '<th class="history-head"> Output Result </th>';
+                table += '</tr>';
+                for (let i = data.length - 1; i >= 0; i--) {
+                    table += '<tr>';
+                    table += `<td class="history-row"> ${data[i].input} </td>`;
+                    table += `<td class="history-row"> ${data[i].output} </td>`;
+                    table += '</tr>';
+                }
+                table += '</table>';
+
+                document.getElementById("history-records").innerHTML = table;
             }
 
-            xhr.send(JSON.stringify(req));
+            if (equ) {
+                xhr.open('POST', url + '/addRecord', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(req));
+            } else {
+                xhr.open('GET', url, true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send();
+            }
         }
 
-        //function to clear the display 
+        //function to evaluates the digit and return result
+        function calculate() {
+            let equ = document.getElementById("result").value;
+            let res = eval(equ);
+            document.getElementById("result").value = res;
+
+            getHistoryTableContent(equ, res);
+            cleanAll();
+        }
+
+        //function to clear the display
         function cleanAll() {
             document.getElementById("result").value = "";
         }
+
+        cleanAll();
+        getHistoryTableContent();
     </script>
 </body>
 
