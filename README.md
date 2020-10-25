@@ -1,6 +1,7 @@
 # calculator-web-app
 
 ## Installation
+1. Clone this project at local
 1. Install [node.js](https://nodejs.org/en/)
 2. Run `npm install`
 
